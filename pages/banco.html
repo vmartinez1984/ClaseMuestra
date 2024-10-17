@@ -1,0 +1,233 @@
+<!DOCTYPE HTML>
+<!--
+	Hyperspace by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+
+<head>
+	<title>MAUI - App tipo Banco</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="../assets/css/main.css" />
+	<link rel="icon" type="image/x-icon" href="../images/Ico.png"/>
+</head>
+
+<body class="is-preload">
+
+	<!-- Header -->
+	<header id="header">
+		<a href="../index.html" class="title">MAUI</a>
+		<nav>
+			<ul>
+				<li><a href="../index.html#temario">Home</a></li>
+			</ul>
+		</nav>
+	</header>
+
+	<!-- Wrapper -->
+	<div id="wrapper">
+
+		<!-- Main -->
+		<section id="main" class="wrapper">
+			<div class="inner">
+				<h1 class="major">App de banco</h1>
+				<div style="background-color: aliceblue;">
+					<span class="image fit"><img src="../images/botMauiApps.webp" alt="" /></span>
+				</div>
+				<h2>Vistazo</h2>
+				<p>
+					Será una aplicación de tipo banco recortada, donde tendremos los siguientes componentes
+				</p>
+				Registro
+					<blockquote>
+						Se registra el cliente con los datos básicos generales, nombres, apellidos, correo, telefono, rfc y contraseña 
+					</blockquote>
+
+					Inicio de sesión
+					<blockquote>
+						Para ingresar a la aplicación es necesario porporcionar un inicio de sesión, este será por medio de usuario y contraseña
+					</blockquote>
+					Datos generales de la cuenta
+					<blockquote>
+						Aqui se mostrará el total de la cuenta, el numero de cuenta, el número de clabe
+					</blockquote>
+					Detalles de los movimientos
+					<blockquote>
+						Lista de cantidad, referencia, fecha del movimiento, tipo de movimiento, concepto.
+					</blockquote>
+					Transferencia
+					<blockquote>
+						Cantidad, nombre del beneficiario, clabe, concepto
+					</blockquote>
+					Instrucciones para realizar depositos
+					<blockquote>
+						Se mostrara el número de cuenta, un código de barras y las instrucciones para el deposito. En este punto se consumira el servicio por medio de postman o una pagina que simulara la famosa cadena de tiendas, el cual recibira el dinero para que se aplicado a la cuenta de ahorro.
+					</blockquote>
+				
+
+				<h2>En las temporadas anteriores</h2>
+				<p>
+					Modelo, vista, controlador
+				</p>
+
+				<div style="background-color: aliceblue; padding-top: 40px; padding-bottom: 10px;">
+					<span style="text-align: center;">
+						<pre class="mermaid">
+							flowchart LR
+    						subgraph App
+							Modelos <--> Controlador
+							Controlador <--> Vista
+							end
+							Vista <--> Usuario(Usuario)
+						</pre>
+					</span>
+				</div>
+				<p>El usuario hace una interacción a tráves de la vista, el controlador procesa la petición, arma la respuesta con base al modelo y devuelve la vista.</p>
+				
+				<p>Ahora, el controlador puede realizar consultas a repositorios, almacenes o consumir servicios, lo que nos daria lo siguiente: </p>
+				<div style="background-color: aliceblue; padding-top: 40px; padding-bottom: 10px;">
+					<span style="text-align: center;">
+						<pre class="mermaid">
+							flowchart TD
+							subgraph App
+							Controlador <--> Repositorios
+							Controlador <--> Almacenes
+							Controlador <--> Servicios
+							Modelos <--> Controlador
+							Controlador <--> Vista
+							end
+							Vista <--> Usuario(Usuario)
+						</pre>
+					</span>
+				</div>
+				<p>Donde consideraremos:
+					<br/> Los repositorios es el origen de datos una db Sql, db NoSql, archivo txt, archivo csv, archivo tsv incluso otro servicio.
+					<br/> Los almacenes se utilizan para guardar archivos, que pueden ser la documentación, imagenes, videos. Esto puede ser una almacen de objetos como Alfresco, S3 de Amazon, por mencionar un par.
+					<br/> Los servicios se usa para el procesamiento de datos, como puede ser extracción ocr, reconocimiento facail, analisis de imagenes, generación de clabes, generación de RFC, etc.					
+				</p>
+				
+				<p>Ahora separaremos un poco más, ya que en el controlador esta enbebida funciones como validaciones, reglas de negocio, etc.</p>
+				<div style="background-color: aliceblue; padding-top: 40px; padding-bottom: 10px;">
+					<span style="text-align: center;">
+						<pre class="mermaid">
+							flowchart TD
+							subgraph App
+							ReglasDeNegocio <--> Repositorios
+							ReglasDeNegocio <--> Almacenes
+							ReglasDeNegocio <--> Servicios
+							end
+							subgraph MVC
+							Modelos <--> Controlador
+							ReglasDeNegocio <--> Controlador   
+							Controlador <--> Vista        
+							end
+							Vista <--> Usuario(Usuario)
+						</pre>
+					</span>
+				</div>
+				<p>Seguimos conservando MVC, pero tenemos detalles de las otras capas</p>
+				<p>Ahora vamos hacer unos pequeños cambios</p>
+				<div style="background-color: aliceblue; padding-top: 40px; padding-bottom: 10px;">
+					<span style="text-align: center;">
+						<pre class="mermaid">
+							flowchart TD
+							subgraph App
+							ReglasDeNegocio <--> Repositorios
+							ReglasDeNegocio <--> Almacenes
+							ReglasDeNegocio <--> Servicios    
+							end
+							subgraph Presentacion
+								ApiRest <--> ReglasDeNegocio        
+								MVC <--> ReglasDeNegocio
+								Soap <--> ReglasDeNegocio
+								gRPC <--> ReglasDeNegocio
+							end 
+							subgraph Front
+								ApiRest <--> PaginaWeb
+								ApiRest <--> AppMaui
+							end
+							Presentacion <--> Usuario(Usuario)
+							Front <--> Usuario
+						</pre>
+					</span>
+				</div>
+				<p>
+					Ahora en el diagrama vemos donde va a quedar nuestra applicación Maui. 
+					Nuestra aplicación consumira un servicio ApiRest, que esta displonible y para sus pruebas locales se les proporcionara el repo de GitHub.					
+				</p>
+
+				<h2>El servicio</h2>
+				<p>
+					El código esta disponible en:
+					<ul class="actions">
+						<li><a href="https://github.com/vmartinez1984/DuckBank.Ms" class="button">Repo</a></li>
+						<li><a href="https://unam-banco.vmartinez84.xyz/swagger/index.html" class="button">Servicio on line</a></li>
+					</ul>
+				</p>
+
+				<h2>¿Como se organiza el proyecto?</h2>
+				<p>
+					Utilizaremos principios SOLID, aunque suene muy complejo en relidad ya ocupaste algunos conceptos anteriormente en tus practicas de MVC y Web services.
+					Los postfijos, prefijos y/o convenciones se haran en ingles, el nombre de las clases serán en español. Pero usted puede hacerlas como guste, solo mantenga uniformidad en los nombres y sus propias convenciones.
+					Si usted usa ClienteModel, ClienteService en algunas de sus clases y por ahi aparezca ClientViewModel, sera observado en su code review para corrección o su penalización en caso de no hacerlo.					
+				</p>
+				<p>Organice sus carpetas y clases, como se muestra a continuación</p>
+				Paginas				
+				<blockquote>
+					Aqui iran todas las pages que se crean en el proyecto con el postfijo Page, que es la componenete donde tiene interacción el cliente o usuario.
+					<br/> ej. RegistroDeClientePage
+				</blockquote>
+				Modelos
+				<blockquote>
+					Son las clases que tienen su correspondencia con los campos de la página y deben de tener el postfijo Model
+					<br/> ej. ClienteModel
+				</blockquote>
+				ModeloVistas
+				<blockquote>
+					Son los componentes relacionados con el patron MVVM y deben de tener el psotfijo ModelView, esta clase tiene la responsabilidad de la comunicación de la vista es decir la Page con el Modelo
+					<br> ej. ClienteModelView
+				</blockquote>
+				Servicios
+				<blockquote>
+					Es la carpeta que se encargara de procesar y enviar los datos al web service. Debe de llevar el postfijo Service.
+					Implementacion de las interfaces.
+					<br>ej. ClienteService
+				</blockquote>
+				Interfaces
+				<blockquote>
+					Aqui iran todas las interfaces, las cuales seran inyectadas en el MauiProgram. Deben de llevar el prefijo I
+					<br>ej. IClienteService
+				</blockquote>
+				<script type="module">
+					import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+					mermaid.initialize({ startOnLoad: true });
+				</script>
+			</div>
+		</section>
+
+	</div>
+
+	<!-- Footer -->
+	<footer id="footer" class="wrapper alt">
+		<div class="inner">
+			<ul class="menu">
+				<li>&copy; Untitled. All rights reserved.</li>
+				<li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+			</ul>
+		</div>
+	</footer>
+
+	<!-- Scripts -->
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/jquery.scrollex.min.js"></script>
+	<script src="assets/js/jquery.scrolly.min.js"></script>
+	<script src="assets/js/browser.min.js"></script>
+	<script src="assets/js/breakpoints.min.js"></script>
+	<script src="assets/js/util.js"></script>
+	<script src="assets/js/main.js"></script>
+
+</body>
+
+</html>
