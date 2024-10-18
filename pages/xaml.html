@@ -1,0 +1,86 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<title>MAUI -XAML</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="../assets/css/main.css" />
+</head>
+
+<body class="is-preload" onload="cargarElFooter()">
+
+	<!-- Header -->
+	<header id="header">
+		<a href="../index.html" class="title">MAUI</a>
+		<nav>
+			<ul>
+				<li><a href="../index.html#temario">Home</a></li>
+			</ul>
+		</nav>
+	</header>
+
+	<!-- Wrapper -->
+	<div id="wrapper">
+
+		<!-- Main -->
+		<section id="main" class="wrapper">
+			<div class="inner">
+				<h1 class="major">XAML</h1>
+				<span style="background-color: aliceblue;" class="image fit"><img src="../images/botMauiApps.webp"
+						alt="" /></span>
+				<p>
+					eXtensible Application Markup Languaje, basado en XML. Es el lenguaje que nos permite construir la
+					vista en la aplicación, páginas, controles, contenedores.
+				</p>
+				<p>Cuando creas tu proyecto proyecto mediante VS, crea dos archivos un .xaml el cual tiene etiquetas
+					tipo html o como dice la definición xml y
+					otro archivo del mismo nombre .xaml.cs donde se hace la programación en C#. Como se puede apreciar
+					en la siguiente imágen:</p>
+				<div class="row gtr-uniform">
+					<div class="col-4"></div>
+					<div class="col-4">
+						<span class="image fit">
+							<img src="/images/AppMaui01.png" />
+						</span>
+					</div>
+					<div class="col-4"></div>
+				</div>
+				<p></p>
+				<p>Para este primer acercamiento, revisaremos el MainPage.xml</p>
+				<div class="row gtr-uniform">
+					<div class="col-2"></div>
+					<div class="col-8">
+						<span class="image fit">
+							<img src="/images/MainPage.png" />
+						</span>
+					</div>
+					<div class="col-2"></div>
+				</div>
+			</div>
+		</section>
+
+	</div>
+
+	<!-- Footer -->
+	<div id="footer"></div>
+
+	<!-- Scripts -->
+	<script>
+		function cargarElFooter() {
+			fetch("/pages/templates/footer.html")
+				.then((response) => response.text())
+				.then((data) => document.getElementById('footer').innerHTML = data)
+		}
+	</script>
+	<script src="../assets/js/jquery.min.js"></script>
+	<script src="../assets/js/jquery.scrollex.min.js"></script>
+	<script src="../assets/js/jquery.scrolly.min.js"></script>
+	<script src="../assets/js/browser.min.js"></script>
+	<script src="../assets/js/breakpoints.min.js"></script>
+	<script src="../assets/js/util.js"></script>
+	<script src="../assets/js/main.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<title>MAUI -XAML</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="../assets/css/main.css" />	
+</head>
+
+<body class="is-preload" onload="cargarElFooter()">
+
+	<!-- Header -->
+	<header id="header">
+		<a href="../index.html" class="title">MAUI</a>
+		<nav>
+			<ul>
+				<li><a href="../index.html#temario">Home</a></li>
+			</ul>
+		</nav>
+	</header>
+
+	<!-- Wrapper -->
+	<div id="wrapper">
+
+		<!-- Main -->
+		<section id="main" class="wrapper">
+			<div class="inner">
+				<h1 class="major">Referencias</h1>
+				<a href="https://www.stellarinfo.com/support/kb/index.php/article/enable-usb-debugging-mode-in-xiaomi-redmi-phone#:~:text=Go%20to%20Settings%2C%20scroll%20down%20and%20click%20on,to%20allow%20USB%20debugging.%20Tap%20OK%20to%20confirm.">
+					https://www.stellarinfo.com/support/kb/index.php/article/enable-usb-debugging-mode-in-xiaomi-redmi-phone#:~:text=Go%20to%20Settings%2C%20scroll%20down%20and%20click%20on,to%20allow%20USB%20debugging.%20Tap%20OK%20to%20confirm.
+				</a>
+				<a href="https://learn.microsoft.com/es-es/dotnet/maui/?view=net-maui-8.0">
+					MAUI
+				</a>
+			</div>
+		</section>
+
+	</div>
+
+	<!-- Footer -->
+	<div id="footer"></div>
+
+	<!-- Scripts -->
+	<script>
+		function cargarElFooter(){
+			fetch("/pages/templates/footer.html")
+			.then((response)=> response.text())
+			.then((data)=>document.getElementById('footer').innerHTML = data)
+		}
+	</script>
+	<script src="../assets/js/jquery.min.js"></script>
+	<script src="../assets/js/jquery.scrollex.min.js"></script>
+	<script src="../assets/js/jquery.scrolly.min.js"></script>
+	<script src="../assets/js/browser.min.js"></script>
+	<script src="../assets/js/breakpoints.min.js"></script>
+	<script src="../assets/js/util.js"></script>
+	<script src="../assets/js/main.js"></script>
+
+</body>
+
+</html>
