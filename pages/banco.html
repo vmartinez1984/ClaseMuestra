@@ -8,14 +8,14 @@
 	<link rel="icon" type="image/x-icon" href="../images/Ico.png" />
 </head>
 
-<body class="is-preload">
+<body class="is-preload" onload="cargarPlantillas()">
 
 	<!-- Header -->
 	<header id="header">
 		<a href="../index.html" class="title">MAUI</a>
 		<nav>
 			<ul>
-				<li><a href="../index.html#temario">Home</a></li>
+				<li><a href="../index.html#proyecto">Home</a></li>
 			</ul>
 		</nav>
 	</header>
@@ -233,17 +233,14 @@
 	</div>
 
 	<!-- Footer -->
-	<footer id="footer" class="wrapper alt">
-		<div class="inner">
-			<ul class="menu">
-				<li>&copy; MAUI. Seminario dotnet UNAM.</li>
-				<li>Víctor Martínez</li>
-				<li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-			</ul>
-		</div>
-	</footer>
+	<div id="footer"></div>
 
 	<!-- Scripts -->
+	<script type="module">
+		import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+		mermaid.initialize({ startOnLoad: true });
+	</script>
+	<script src="../assets/js/site.js"></script>
 	<script src="assets/js/jquery.min.js"></script>
 	<script src="assets/js/jquery.scrollex.min.js"></script>
 	<script src="assets/js/jquery.scrolly.min.js"></script>

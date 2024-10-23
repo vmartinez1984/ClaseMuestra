@@ -1,0 +1,117 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<title>MAUI - Escaleta</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="assets/css/main.css" />
+	<noscript>
+		<link rel="stylesheet" href="assets/css/noscript.css" />
+	</noscript>
+</head>
+
+<body class="is-preload" onload="cargarPlantillas()">
+
+	<!-- Header -->
+	<header id="header">
+		<a href="index.html" class="title">MAUI</a>
+		<nav>
+			<ul>
+				<li><a href="index.html">Home</a></li>
+				<li><a href="generic.html" class="active">Generic</a></li>
+				<li><a href="elements.html">Elements</a></li>
+			</ul>
+		</nav>
+	</header>
+
+	<!-- Wrapper -->
+	<div id="wrapper">
+
+		<!-- Main -->
+		<section id="main" class="wrapper">
+			<div class="inner">
+				<h1 class="major">Escaleta</h1>
+				<!-- <span class="image fit"><img src="images/pic04.jpg" alt="" /></span> -->
+				<input type="checkbox" id="presentacion" />
+				<label for="presentacion">Presentación, 1 minuto</label>
+				<ul>
+					<li style="list-style: none;">
+						<input type="checkbox" id="url" />
+						<label for="url">Compartir la url</label>
+					</li>
+
+					<li style="list-style: none;">
+						<input type="checkbox" id="acercaDeMi" />
+						<label for="acercaDeMi">Acerca de mi</label>
+						<p>
+							Mi nombre es Víctor Martínez, soy licenciado en informatica y tengo 6 años de experiencia en
+							.NET
+							<br>
+							He hecho diversas aplicaciones de escritorio en windows form, Wpf y mobile para android, en
+							esta sección
+							del curso veremos MAUI.
+							Pero dejemos un momento la parte técnica, tengo 3 gatos, que estoy seguro que al menos veran
+							a uno, haciendo
+							aparición en alguna sesión. Soy aficionado a la ciencia ficción, viajes en el tiempo,
+							policial y cuentos en general,
+							mi libro favorito hasta el momento es Pedro Paramo.
+							Hace un par de meses me hice aficionado y practicante al boxeo, he empezado a escuchar
+							entrevistas, me han
+							resultado interesantes saber, como practican, que piensan.
+							Si lo piensan por un momento es una algoritmo, es una secuencia de pasos para ejecutar una
+							acción.
+						</p>
+					</li>
+				</ul>
+
+				<br />
+				<input type="checkbox" id="objetivo" />
+				<label for="objetivo">Objetivo de la clase, 1 minuto</label>
+				<p>
+					El objetivo de esta sección del seminario es que tengan los conocimientos necesarios para construir,
+					una aplicación en MAUI, es una herramienta nueva (abril 2022), retoma varios elementos como es
+					XAML para WPF apps de escritorio y Xamarin para apps mobiles para la interfaz de usuario.
+					En la programación retomaremos varios conceptos y herramientas que se han visto a lo largo del
+					curso.
+				</p>
+				<br />
+				<input type="checkbox" id="evaluacion" />
+				<label for="evaluacion">Evaluación, 1 minuto</label>
+
+				<br />
+				<input type="checkbox" id="explicacion" />
+				<label for="explicacion">De que trata el proyecto, 5 minuto</label>
+
+				<br />
+				<input type="checkbox" id="xaml" />
+				<label for="xaml">Xaml, 10 minuto</label>
+
+				<br />
+				<input type="checkbox" id="mvvm" />
+				<label for="mvvm">Mvvm, 10 minuto</label>
+			</div>
+		</section>
+
+	</div>
+
+	<!-- Footer -->
+	<div id="footer"></div>
+
+	<!-- Scripts -->
+	<script type="module">
+		import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+		mermaid.initialize({ startOnLoad: true });
+	</script>
+	<script src="assets/js/site.js"></script>
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/jquery.scrollex.min.js"></script>
+	<script src="assets/js/jquery.scrolly.min.js"></script>
+	<script src="assets/js/browser.min.js"></script>
+	<script src="assets/js/breakpoints.min.js"></script>
+	<script src="assets/js/util.js"></script>
+	<script src="assets/js/main.js"></script>
+
+</body>
+
+</html>

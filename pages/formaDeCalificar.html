@@ -8,14 +8,14 @@
 	<link rel="stylesheet" href="../assets/css/main.css" />
 </head>
 
-<body class="is-preload">
+<body class="is-preload" onload="cargarPlantillas()">
 
 	<!-- Header -->
 	<header id="header">
 		<a href="../index.html" class="title">MAUI</a>
 		<nav>
 			<ul>
-				<li><a href="../index.html#temario">Home</a></li>				
+				<li><a href="../index.html">Home</a></li>
 			</ul>
 		</nav>
 	</header>
@@ -33,19 +33,57 @@
 				<p>¿Como se aprende a programar? Programando</p>
 				<ul>
 					<li>En clase se harán diversos ejercicios, lo cuales deben estar en su repositorio.</li>
-					<li>Se hará code review, los metodos deben de empezar con un verbo en infinitivo, un método una tarea.</li>
+					<li>Los ejercicio que se harán en clase se subiran a un repositorio para que puedan consultarlos
+					</li>
+					<li>Los ejercicios tienen un enfoque de pruebas unitarias e integrales</li>
+					<li>Se hará code review, los metodos deben de empezar con un verbo en infinitivo, un método una
+						tarea.</li>
 					<li>Colocar comentarios en donde el algortimo sea muy complejo o el nombre no sea descriptivo.</li>
-				</ul>			
+					<li>El proyecto debe de estar estructurado.</li>
+					<li>El proyecto será en equipo de dos personas</li>
+					<li>Se haran sesiones de seguimiento</li>
+				</ul>
 
 				<p>Se brindaran las herramientas para que finalmente el proyecto este funcional</p>
 				¿Que debe de contener el proyecto?
-				<ul>
-					<li>El proyecto debe compilar</li>
-					<li></li>
-				</ul>
+				<table>
+					<thead>
+						<tr>
+							<th>Rubro</th>
+							<th>Puntos</th>
+						</tr>
+					</thead>
+					<tfoot>
+						<tr>
+							<th>Total</th>
+							<th>10</th>
+						</tr>
+					</tfoot>
+					<tr>
+						<td>El proyecto debe de compilar</td>
+						<td>5</td>
+					</tr>
+					<tr>
+						<td>Manejo de errores</td>
+						<td>1</td>
+					</tr>
+					<tr>
+						<td>Code review</td>
+						<td>1</td>
+					</tr>
+					<tr>
+						<td>Presentación del proyecto</td>
+						<td>2</td>
+					</tr>
+					<tr>
+						<td>Tareas y actividades en clase</td>
+						<td>1</td>
+					</tr>
+				</table>
 
 				<p>
-					Habra code review, revisare su código y le hare oberservaciones, si necesita habra sesiones para dudas, estas serán los martes y jueves de 20:00 a 21:00.
+					Revisare su código y le hare oberservaciones, si necesita habra sesiones para dudas, estas serán los
+					martes y jueves de 20:00 a 21:00.
 					Mi número es <b>55 3273 7357</b> enviame mensaje via whats.
 				</p>
 			</div>
@@ -54,16 +92,14 @@
 	</div>
 
 	<!-- Footer -->
-	<footer id="footer" class="wrapper alt">
-		<div class="inner">
-			<ul class="menu">
-				<li>&copy; Untitled. All rights reserved.</li>
-				<li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-			</ul>
-		</div>
-	</footer>
+	<div id="footer"></div>
 
 	<!-- Scripts -->
+	<script type="module">
+		import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+		mermaid.initialize({ startOnLoad: true });
+	</script>
+	<script src="../assets/js/site.js"></script>
 	<script src="assets/js/jquery.min.js"></script>
 	<script src="assets/js/jquery.scrollex.min.js"></script>
 	<script src="assets/js/jquery.scrolly.min.js"></script>

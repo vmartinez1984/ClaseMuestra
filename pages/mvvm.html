@@ -1,0 +1,259 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<title>MAUI -MVVM</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="../assets/css/main.css" />
+</head>
+
+<body class="is-preload" onload="cargarElFooter()">
+
+	<!-- Header -->
+	<header id="header">
+		<a href="../index.html" class="title">MAUI</a>
+		<nav>
+			<ul>
+				<li><a href="../index.html#temario">Home</a></li>
+			</ul>
+		</nav>
+	</header>
+
+	<!-- Wrapper -->
+	<div id="wrapper">
+
+		<!-- Main -->
+		<section id="main" class="wrapper">
+			<div class="inner">
+				<h1 class="major">Modelo Vista Vista-Modelo</h1>
+				<span style="background-color: aliceblue;" class="image fit"><img src="../images/botMauiApps.webp"
+						alt="" /></span>
+				<p>
+					En este punto haremos un recordatorio, de MVC, Modelo Vista Controlador y el diagrama es el
+					siguiente:
+				</p>
+				<div class="contenedor-diagrama">
+					<pre class="mermaid">
+							flowchart LR
+    						subgraph MVC
+							Modelos <--> Controlador
+							Controlador <--> Vista
+							end
+							Vista <--> Usuario(Usuario)
+						</pre>
+				</div>
+				<p></p>
+
+				Donde
+				<br />
+				La vista
+				<blockquote>
+					Es el componente con el cual interactua el usuario, que tiene los controles, etiquetas, etc.
+				</blockquote>
+
+				El controlador
+				<blockquote>
+					Es el componente que procesa la petición que viene de la vista, con base al modelo.
+					<br/> La peticiones se procesan mediante el <b>Controller</b> y los <b>Methods</b>
+					<pre>
+						<code>
+/// Controlador de un CRUD de Tareas
+public class HomeController : Controller
+{
+	/// Acceso a las reglas de negocio, provider, factory o service	
+	private readonly IMediator _mediator;
+
+	/// Inyecccion del provider
+	public HomeController(IMediator mediator)
+	{
+		_logger = logger;
+		_mediator = mediator;
+	}
+
+	
+	/// Lista de tareas
+	public async Task<IActionResult> Index()
+	{
+		List<ObtenerTareaCommandResponse> response;
+
+		response = await _mediator.Send(new ObtenerTareaCommand());
+
+		return View(response);
+	}
+
+	/// Formulario de tarea
+	public IActionResult AgregarTarea()
+	{
+		return View();
+	}
+
+	/// Se agrega la tarea
+	[HttpPost]
+	public async Task<IActionResult> AgregarTarea(AgregarTareaCommand command)
+	{
+		await _mediator.Send(command);
+
+		return RedirectToAction("Index");
+	}
+
+	...
+}	
+						</code>
+					</pre>
+				</blockquote>
+
+				El Modelo
+				<blockquote>
+					Es el componente que tiene propiedades y metodos, de un objeto del mundo real.
+				</blockquote>
+
+				<p>
+					Ahora veamos el diagrama de MVVM
+				</p>
+				<div class="contenedor-diagrama">
+					<pre class="mermaid">
+							flowchart LR
+    						subgraph MVVM
+							Modelos <--> ModeloVista
+							ModeloVista <--> Vista
+							end
+							Vista <--> Usuario(Usuario)
+						</pre>
+				</div>
+				<p></p>
+
+				Donde
+				<br />
+				La vista
+				<blockquote>
+					Es el componente con el cual interactua el usuario, que tiene los controles, etiquetas, etc.
+				</blockquote>
+
+				Modelo Vista
+				<blockquote>
+					Deacuerdo a Microsoft, El modelo de vista implementa propiedades y comandos a los que la vista puede enlazar datos, 
+					y avisa a la vista los cambios de estado mediante eventos de notificación de cambios. 
+					Las propiedades y comandos que proporciona el modelo de vista definen la funcionalidad que ofrece la interfaz de usuario, 
+					pero la vista determina cómo se va a mostrar esa funcionalidad.
+					<br/>
+					En otras palabras,
+					Es el componente que procesa la petición que viene de la vista, con base al modelo. Pero actualizando la vista y el modelo.
+					<br/>
+					Los procesos se hacen mediante <b>Command</b> y <b>PropertyChange</b>
+				</blockquote>
+
+				El Modelo
+				<blockquote>
+					Es el componente que tiene propiedades y metodos, de un objeto del mundo real.
+				</blockquote>
+
+				<p>
+					Ahora tenemos una mejor idea de los que es MVVM, vamos a ver un poco de código, un ejemplo sencillo un formulario 
+					donde se pedira el nombre y se procesara la información.
+				</p>
+
+				<h3>Modelo</h3>
+<pre><code>
+public class Persona
+{
+    public string Nombre { get; set; }
+    public int Edad { get; set; }
+}
+</code></pre>
+
+				<h3>Vista</h3>
+<pre><code>
+&lt;ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:TuApp"
+    x:Class="TuApp.MainPage"&gt;
+
+    &lt;StackLayout Padding="30"&gt;
+        &lt;Label Text="Nombre:" /&gt;
+        &lt;Entry Text="{Binding Persona.Nombre}" /&gt;
+
+        &lt;Button Text="Mostrar Información" Command="{Binding GuardarCommand}" /&gt;
+
+        &lt;Label x:Name="Mensaje" Text="{Binding Mensaje}" /&gt;
+    &lt;/StackLayout&gt;
+
+&lt;/ContentPage&gt;
+</code></pre>
+<p>Code behind</p>
+<pre><code>
+public partial class MainPage : ContentPage
+{
+	public MainPage()
+	{
+		InitializeComponent();
+		//Asi enlazamos con la vista-modelo
+		BindingContext = new MainPageViewModel();
+	}
+}
+</code></pre>
+
+				<h3>Vista-Modelo</h3>
+<pre><code>
+public class MainPageViewModel : INotifyPropertyChanged
+{
+    //Modelo
+    public Persona Persona { get; set; }
+
+    //Mensaje en la vista
+    public string Mensaje { get; set; }
+
+    public ICommand GuardarCommand { get; }
+
+    public MainPageViewModel()
+    {
+        //Instanciamos el objeto
+        Persona = new Persona();
+
+        //Enlazamos con el command el método o función
+        GuardarCommand = new Command(Guardar);
+    }
+
+    //Para fines del ejemplo solo se formateara una cadena, 
+    // pero aqui se puede enviar al servicio para guardar u otro para procesar los datos
+    private void Guardar()
+    {
+        Mensaje = $"Ha sido registrado: {Persona.Nombre}";
+
+        //Notificamos el cambio de la variable
+        OnPropertyChanged(nameof(Mensaje));
+    }
+
+    public event PropertyChangedEventHandler PropertyChanged;
+
+    protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
+    {
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+    }
+}
+</code></pre>
+			</div>
+		</section>
+
+	</div>
+
+	<!-- Footer -->
+	<div id="footer"></div>
+
+	<!-- Scripts -->
+	<script type="module">
+		import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+		mermaid.initialize({ startOnLoad: true });
+	</script>
+	<script src="../assets/js/site.js"></script>
+	<script src="../assets/js/jquery.min.js"></script>
+	<script src="../assets/js/jquery.scrollex.min.js"></script>
+	<script src="../assets/js/jquery.scrolly.min.js"></script>
+	<script src="../assets/js/browser.min.js"></script>
+	<script src="../assets/js/breakpoints.min.js"></script>
+	<script src="../assets/js/util.js"></script>
+	<script src="../assets/js/main.js"></script>
+
+</body>
+
+</html>

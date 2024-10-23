@@ -13,7 +13,7 @@
 	<link rel="stylesheet" href="/assets/css/main.css" />	
 </head>
 
-<body class="is-preload">
+<body class="is-preload" onload="cargarPlantillas()">
 
 	<!-- Sidebar -->
 	<section id="sidebar">
@@ -21,9 +21,9 @@
 			<nav>
 				<ul>
 					<li><a href="#intro">Bienvenido</a></li>
-					<li><a href="#temario">Temario</a></li>
 					<li><a href="#herramientas">Herramientas</a></li>
 					<li><a href="#proyecto">¿Que proyecto haremos?</a></li>					
+					<li><a href="#temario">Temario</a></li>
 				</ul>
 			</nav>
 		</div>
@@ -45,74 +45,16 @@
 					<br />
 					Es fácil de desarrollar en Visual Studio IDE
 				</p>
-				<a href="acercaDelInstructor.html">Acerca del instructor</a>
+				<a href="/pages/acercaDelInstructor.html">Acerca del instructor</a>
 				<br />
 				<br />
 				<ul class="actions">
 					<li><a href="/pages/formaDeCalificar.html" class="button scrolly">¿Como y que se va calificar?</a></li>
 				</ul>
-				<ul class="actions">
+				<!-- <ul class="actions">
 					<li><a href="#temario" class="button scrolly">Aprenda más</a></li>
-				</ul>
+				</ul> -->
 			</div>
-		</section>
-
-		<!-- Temario-->
-		<section id="temario" class="wrapper style2 spotlights">
-			<section>
-				<a class="image" style="background-color: aliceblue;"><img src="images/dotnet_bot.png" width="50" alt=""
-						data-position="center center" /></a>
-				<div class="content">
-					<div class="inner">
-						<h2>Vistazo del temario</h2>
-						<p>
-							<a href="/pages/xaml.html">XAML, páginas y controles</a>						
-						</p>
-						<p>Databinding y patron MVVM</p>
-						<p>Estilos en MAUI</p>
-						<p>Consumo de servicios web</p>
-						<p>Sqlite</p>
-						<p>Seguridad en Maui</p>
-						<ul class="actions">
-							<li><a href="/pages/temarioConDetalle.html" class="button">Temario detallado</a></li>
-						</ul>
-					</div>
-				</div>
-			</section>
-
-			<section>
-				<a href="#" class="image"><img src="images/maui-robot-working.png" alt="" data-position="top center" /></a>
-				<div class="content">
-					<div class="inner">
-						<h2>Repaso de conceptos básicos, que se usaran en el curso</h2>
-						<p>Recuerdas</p>
-						<p>
-							¿Que es inyección de dependencias? ¿ApiRest? ¿Que es un CRUD? ¿Que es un contructor?
-							¿Que diferencia hay entre un servicio, un repositorio y un almacen?
-						</p>
-						<p>
-							No te preocupes, da un repaso rápido
-						</p>
-						<ul class="actions">
-							<li><a href="/pages/repaso.html" class="button">Repaso de conceptos</a></li>
-						</ul>
-					</div>
-				</div>
-			</section>
-			<section>
-				<a href="#" class="image"><img src="images/RobotMaui01.webp" alt="" data-position="25% 25%" /></a>
-				<div class="content">
-					<div class="inner">
-						<h2>Has una prueba de tus conocimientos</h2>
-						<p>
-							Un pequeño test
-						</p>
-						<ul class="actions">
-							<li><a href="generic.html" class="button">Test</a></li>
-						</ul>
-					</div>
-				</div>
-			</section>
 		</section>
 
 		<!-- Herramientas-->
@@ -162,7 +104,7 @@
 			<div class="inner">
 				<h2>Proyectos</h2>
 				<p>
-					En la insdustria se hacen pruebas de conceptos, prototipos, pruebas unitarias, pruebas de integración, para armar un producto.
+					En la industria se hacen pruebas de conceptos, prototipos, pruebas unitarias, pruebas de integración, para armar un producto.
 					Retomaremos la misma idea armando un par de proyectos finales, en cada clase se brindaran elementos para completar los proyectos, asi que veamos que se armara.
 				</p>
 				<div class="split style2">
@@ -190,19 +132,80 @@
 			</div>
 		</section>
 
+		<!-- Temario-->
+		<section id="temario" class="wrapper style2 spotlights">
+			<section>
+				<a class="image" style="background-color: aliceblue;"><img src="images/dotnet_bot.png" width="50" alt=""
+						data-position="center center" /></a>
+				<div class="content">
+					<div class="inner">
+						<h2>Vistazo del temario</h2>
+						<p>
+							<a href="/pages/xaml.html">XAML, páginas y controles</a>						
+						</p>
+						<p>
+							<a href="/pages/mvvm.html">Databinding y patron MVVM</a>						
+						</p>
+						
+						<p>Estilos en MAUI</p>
+						<p>Consumo de servicios web</p>
+						<p>Sqlite</p>
+						<p>Seguridad en Maui</p>
+						<ul class="actions">
+							<li><a href="/pages/temarioConDetalle.html" class="button">Temario detallado</a></li>
+						</ul>
+					</div>
+				</div>
+			</section>
+
+			<section>
+				<a href="#" class="image"><img src="images/maui-robot-working.png" alt="" data-position="top center" /></a>
+				<div class="content">
+					<div class="inner">
+						<h2>Repaso de conceptos básicos, que se usaran en el curso</h2>
+						<p>Recuerdas</p>
+						<p>
+							¿Que es inyección de dependencias? ¿ApiRest? ¿Que es un CRUD? ¿Que es un contructor?
+							¿Que diferencia hay entre un servicio, un repositorio y un almacen?
+						</p>
+						<p>
+							No te preocupes, da un repaso rápido
+						</p>
+						<ul class="actions">
+							<li><a href="/pages/enConstruccion.html" class="button">Repaso de conceptos</a></li>
+						</ul>
+					</div>
+				</div>
+			</section>
+			<section>
+				<a href="#" class="image"><img src="images/RobotMaui01.webp" alt="" data-position="25% 25%" /></a>
+				<div class="content">
+					<div class="inner">
+						<h2>Has una prueba de tus conocimientos</h2>
+						<p>
+							Un pequeño test
+						</p>
+						<ul class="actions">
+							<li><a href="/pages/enConstruccion.html" class="button">Test</a></li>
+						</ul>
+					</div>
+				</div>
+			</section>
+		</section>
+
+		
+
 	</div>
 
 	<!-- Footer -->
-	<footer id="footer" class="wrapper style1-alt">
-		<div class="inner">
-			<ul class="menu">
-				<li>&copy; Untitled. All rights reserved.</li>
-				<li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-			</ul>
-		</div>
-	</footer>
+	<div id="footer"></div>
 
 	<!-- Scripts -->
+	<script type="module">
+		import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+		mermaid.initialize({ startOnLoad: true });
+	</script>
+	<script src="assets/js/site.js"></script>
 	<script src="assets/js/jquery.min.js"></script>
 	<script src="assets/js/jquery.scrollex.min.js"></script>
 	<script src="assets/js/jquery.scrolly.min.js"></script>

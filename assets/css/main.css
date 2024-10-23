@@ -3945,3 +3945,11 @@ input, select, textarea {
 			}
 
 		}
+
+/* Mis estilos */
+.contenedor-diagrama{
+	background-color: aliceblue; 
+	padding-top: 40px; 
+	padding-bottom: 10px;
+	text-align: center;
+}

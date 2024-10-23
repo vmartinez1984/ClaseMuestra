@@ -5,19 +5,17 @@
 	<title>Acerca de</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-	<link rel="stylesheet" href="assets/css/main.css" />	
+	<link rel="stylesheet" href="../assets/css/main.css" />	
 </head>
 
-<body class="is-preload" onload="cargarElFooter()">
+<body class="is-preload" onload="cargarPlantillas()">
 
 	<!-- Header -->
 	<header id="header">
-		<a href="index.html" class="title">Hyperspace</a>
+		<a href="../index.html" class="title">MAUI</a>
 		<nav>
-			<ul>
-				<li><a href="index.html">Home</a></li>
-				<li><a href="generic.html" class="active">Generic</a></li>
-				<li><a href="elements.html">Elements</a></li>
+			<ul>				
+				<li><a href="../index.html">Home</a></li>
 			</ul>
 		</nav>
 	</header>
@@ -91,20 +89,18 @@
 	<div id="footer"></div>
 
 	<!-- Scripts -->
-	<script>
-		function cargarElFooter(){
-			fetch("/pages/templates/footer.html")
-			.then((response)=> response.text())
-			.then((data)=>document.getElementById('footer').innerHTML = data)
-		}
+	<script type="module">
+		import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+		mermaid.initialize({ startOnLoad: true });
 	</script>
-	<script src="assets/js/jquery.min.js"></script>
-	<script src="assets/js/jquery.scrollex.min.js"></script>
-	<script src="assets/js/jquery.scrolly.min.js"></script>
-	<script src="assets/js/browser.min.js"></script>
-	<script src="assets/js/breakpoints.min.js"></script>
-	<script src="assets/js/util.js"></script>
-	<script src="assets/js/main.js"></script>
+	<script src="../assets/js/site.js"></script>
+	<script src="../assets/js/jquery.min.js"></script>
+	<script src="../assets/js/jquery.scrollex.min.js"></script>
+	<script src="../assets/js/jquery.scrolly.min.js"></script>
+	<script src="../assets/js/browser.min.js"></script>
+	<script src="../assets/js/breakpoints.min.js"></script>
+	<script src="../assets/js/util.js"></script>
+	<script src="../assets/js/main.js"></script>
 
 </body>
 
