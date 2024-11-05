@@ -1,5 +1,6 @@
 <!DOCTYPE HTML>
 <html>
+
 <head>
 	<title>MAUI - App tipo Banco</title>
 	<meta charset="utf-8" />
@@ -174,15 +175,16 @@
 					repositorio del servicio web y el servicio publicado en los siguientes enlaces:
 				</p>
 				<ul class="actions">
-					<li><a href="https://github.com/vmartinez1984/DuckBank.Ms" class="button">Repo</a></li>
-					<li><a href="https://unam-banco.vmartinez84.xyz/swagger/index.html" class="button">Servicio on
-							line</a></li>
+					<li><a href="https://github.com/vmartinez1984/Banco-Demo" target="_blank" class="button">Repo</a></li>
+					<li><a href="https://unam-banco.vmartinez84.xyz/swagger/index.html" class="button" target="_blank">Servicio on line</a></li>
+					<li><a href="https://unam-docs.vmartinez84.xyz/pages/qr.html" class="button" target="_blank">Deposito en tienda</a></li>
 				</ul>
 
 
 				<h2>Organización de proyecto</h2>
 				<p>
-					Utilizaremos principios <a href="https://es.wikipedia.org/wiki/SOLID" target="_blank">SOLID</a>, aunque suene muy complejo en relidad ya ocupaste algunos conceptos
+					Utilizaremos principios <a href="https://es.wikipedia.org/wiki/SOLID" target="_blank">SOLID</a>,
+					aunque suene muy complejo en relidad ya ocupaste algunos conceptos
 					anteriormente en tus practicas de MVC y Servicios web.
 					Los postfijos, prefijos y/o convenciones se haran en ingles, el nombre de las clases serán en
 					español. Puedes hacerlas como gustes, solo conserva uniformidad en los nombres y tus
@@ -194,32 +196,37 @@
 				<p>Organice sus carpetas y clases, como se muestra a continuación</p>
 				Paginas
 				<blockquote>
-					Carpeta que contiene todos los componenetes del tipo pages que se crean en el proyecto con el postfijo Page, que es la componenete
+					Carpeta que contiene todos los componenetes del tipo pages que se crean en el proyecto con el
+					postfijo Page, que es la componenete
 					donde tiene interacción el cliente o usuario.
 					<br /> ej. RegistroDeClientePage
 				</blockquote>
 				Modelos
 				<blockquote>
-					Carpeta que contiene las clases que tienen su correspondencia con los campos de la página y deben de tener el
+					Carpeta que contiene las clases que tienen su correspondencia con los campos de la página y deben de
+					tener el
 					postfijo Model
 					<br /> ej. ClienteModel
 				</blockquote>
 				ModeloVistas
 				<blockquote>
-					Carpeta que contiene las clases relacionadas con el patron MVVM y deben de tener el psotfijo ModelView, esta
+					Carpeta que contiene las clases relacionadas con el patron MVVM y deben de tener el psotfijo
+					ModelView, esta
 					clase tiene la responsabilidad de la comunicación de la vista es decir la Page con el Modelo
 					<br> ej. ClienteModelView
 				</blockquote>
 				Servicios
 				<blockquote>
-					Carpeta que contiene las clases que se encargaran de procesar y enviar los datos al web service. Debe de llevar el
+					Carpeta que contiene las clases que se encargaran de procesar y enviar los datos al web service.
+					Debe de llevar el
 					postfijo Service.
 					Implementacion de las interfaces.
 					<br>ej. ClienteService
 				</blockquote>
 				Interfaces
 				<blockquote>
-					Carpeta que contiene las interfaces, las cuales seran inyectadas en el MauiProgram. Deben de llevar el
+					Carpeta que contiene las interfaces, las cuales seran inyectadas en el MauiProgram. Deben de llevar
+					el
 					prefijo I
 					<br>ej. IClienteService
 				</blockquote>

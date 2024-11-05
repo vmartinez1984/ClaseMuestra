@@ -1,0 +1,184 @@
+<!DOCTYPE HTML>
+<!--
+	Hyperspace by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+
+<head>
+	<title>MAUI - Deposito por tienda</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="../assets/css/main.css" />
+	<link rel="icon" type="image/x-icon" href="../images/Ico.png" />
+</head>
+
+<body class="is-preload" onload="cargarPlantillas()">
+
+	<!-- Header -->
+	<header id="header">
+		<a href="../index.html" class="title">MAUI</a>
+		<nav>
+			<ul>
+				<li><a href="../index.html#proyecto">Home</a></li>
+			</ul>
+		</nav>
+	</header>
+
+	<!-- Wrapper -->
+	<div id="wrapper">
+
+		<!-- Main -->
+		<section id="main" class="wrapper">
+			<div class="inner">
+				<h1 class="major">Deposito por tienda</h1>
+				<p>Lea el Qr con la cámara o teclee la referencia, anote la cantidad y de click en depositar</p>
+				<video id="preview" width="50%"></video>
+				<p></p>
+				<div class="row gtr-uniform">
+					<div class="col-6 col-12-xsmall">
+						<input type="text" id="referencia" value="" placeholder="Refencia" />
+					</div>
+					<div class="col-6 col-12-xsmall">
+						<input type="text" id="cantidad" value="" placeholder="Cantidad" />
+					</div>
+
+					<div class="col-6 col-12-xsmall">
+						<button onclick="depositar()" id="button">Depositar</button>
+					</div>
+
+					<div class="col-6 col-12-xsmall">
+						<label id="label" style="display: none;">Un momento ...</label>
+					</div>
+				</div>
+			</div>
+		</section>
+
+	</div>
+
+	<!-- Footer -->
+	<div id="footer"></div>
+
+	<script>
+		function esSoloNumeros(cadena) {
+			return /^\d+$/.test(cadena);
+		}
+
+		function depositar() {
+			let referencia = document.getElementById('referencia').value
+			let cantidad = document.getElementById('cantidad').value
+
+			if (referencia == '') {
+				alert("La referencia es obligatoria")
+				return
+			}
+			if (cantidad == '') {
+				alert("La cantidad es obligatoria")
+				return
+			}
+			if (!esSoloNumeros(cantidad)) {
+				alert("Cantida no valida")
+				return
+			}
+
+			const myHeaders = new Headers();
+			myHeaders.append("accept", "*/*");
+			myHeaders.append("Content-Type", "application/json");
+
+			const raw = JSON.stringify({
+				"referencia": referencia,
+				"cantidad": cantidad,
+				"endodedKey": uuidv4()
+			});
+
+			const requestOptions = {
+				method: "POST",
+				headers: myHeaders,
+				body: raw,
+				redirect: "follow"
+			};
+
+			console.log(raw)
+			habilitarFormulario(true)
+			fetch("https://unam-banco.vmartinez84.xyz/api/Corresponsales/Oxxo/Depositos", requestOptions)
+				.then((response) => {
+					habilitarFormulario(false)
+					if (response.ok) {
+						return response.json()
+					} else {
+						alert("Ocurrio un error")
+						return response.text()
+					}
+				})
+				.then((result) => {
+					console.log(result)
+					alert('Desposito realizado con exito: $' + result.cantidad + " " + result.fechaDeRegistro)
+					document.getElementById('referencia').value = ''
+					document.getElementById('cantidad').value = ''
+				})
+				.catch((error) => console.error(error));
+		}
+
+		function habilitarFormulario(habilitar) {
+			document.getElementById('referencia').disabled = habilitar
+			document.getElementById('cantidad').disabled = habilitar
+			document.getElementById('button').disabled = habilitar
+			if (!habilitar)
+				document.getElementById('label').style.display = "none"
+			else
+				document.getElementById('label').style.display = "block"
+		}
+
+		function uuidv4() {
+			return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'
+				.replace(/[xy]/g, function (c) {
+					const r = Math.random() * 16 | 0,
+						v = c == 'x' ? r : (r & 0x3 | 0x8);
+					return v.toString(16);
+				});
+		}
+
+	</script>
+
+	<!-- Importar la librería Instascan -->
+	<script src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
+
+	<script>
+		let scanner = new Instascan.Scanner({ video: document.getElementById('preview') });
+
+		// Escuchar los resultados del escaneo
+		scanner.addListener('scan', function (content) {
+			console.log("Código QR detectado: ", content);
+			document.getElementById('referencia').value = content;
+		});
+
+		// Iniciar la cámara
+		Instascan.Camera.getCameras().then(function (cameras) {
+			if (cameras.length > 0) {
+				// Usar la cámara trasera si está disponible
+				scanner.start(cameras[0]);
+			} else {
+				console.error('No se encontraron cámaras.');
+			}
+		}).catch(function (e) {
+			console.error(e);
+		});
+	</script>
+	<!-- Scripts -->
+	<script type="module">
+		import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+		mermaid.initialize({ startOnLoad: true });
+	</script>
+	<script src="../assets/js/site.js"></script>
+	<script src="../assets/js/jquery.min.js"></script>
+	<script src="../assets/js/jquery.scrollex.min.js"></script>
+	<script src="../assets/js/jquery.scrolly.min.js"></script>
+	<script src="../assets/js/browser.min.js"></script>
+	<script src="../assets/js/breakpoints.min.js"></script>
+	<script src="../assets/js/util.js"></script>
+	<script src="../assets/js/main.js"></script>
+
+</body>
+
+</html>
