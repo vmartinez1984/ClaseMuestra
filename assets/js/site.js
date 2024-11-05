@@ -4,6 +4,12 @@ function cargarElFooter() {
         .then((data) => document.getElementById('footer').innerHTML = data)
 }
 
+function cargarElFooterIndex() {
+    fetch("pages/templates/footer.html")
+        .then((response) => response.text())
+        .then((data) => document.getElementById('footer').innerHTML = data)
+}
+
 function cargarPlantillas(){
     cargarElFooter()
 }
